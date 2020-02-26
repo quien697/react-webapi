@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const api_Url = "http://127.0.0.1:5000"
+
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -10,9 +12,29 @@ export default class App extends Component{
     };
   }
 
-  //取得 City List 1
+ /* 取得 City List 1
+ {
+    "citylist": [
+      {
+        "city_name": "\u53f0\u5317", 
+        "country_name": "Taiwan", 
+        "id": 0
+      }, 
+      {
+        "city_name": "New York", 
+        "country_name": "United States", 
+        "id": 1
+      }, 
+      {
+        "city_name": "London", 
+        "country_name": "United Kingdom", 
+        "id": 2
+      }
+    ]
+  }
+  */
   getCityList1(){
-    fetch("http://127.0.0.1:5000/citylist1")
+    fetch(api_Url + "/citylist1")
       .then(res => res.json())
       .then(
         (result) => {
@@ -33,9 +55,27 @@ export default class App extends Component{
       )
   }
 
-  //取得 City List 2
+  /* 取得 City List 2
+  [
+    {
+      "city_name": "Taipei", 
+      "country_name": "\u53f0\u7063", 
+      "id": 0
+    }, 
+    {
+      "city_name": "New York", 
+      "country_name": "United States", 
+      "id": 1
+    }, 
+    {
+      "city_name": "London", 
+      "country_name": "United Kingdom", 
+      "id": 2
+    }
+  ]
+  */
   getCityList2(){
-    fetch("http://127.0.0.1:5000/citylist2")
+    fetch(api_Url + "/citylist2")
       .then(res => res.json())
       .then(
         (result) => {
@@ -58,8 +98,8 @@ export default class App extends Component{
 
   //取得 City List 3
   getCityList3(cityName){
-    const cityiist3 = "http://127.0.0.1:5000/citylist2/item?city_name="
-    fetch(cityiist3 + cityName)
+    const cityiist3 = "/citylist2/item?city_name="
+    fetch(api_Url + cityiist3 + cityName)
       .then(res => res.json())
       .then(
         (result) => {
@@ -81,7 +121,9 @@ export default class App extends Component{
   }
 
   componentDidMount() {
-    this.getCityList3("New York")
+    this.getCityList1()
+    //this.getCityList2()
+    //this.getCityList3("New York")
   }
 
 
